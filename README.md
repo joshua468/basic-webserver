@@ -41,5 +41,3 @@ Copy code
   "greeting": "Hello, Mark!, the temperature is 11.0 degrees Celsius in New York"
 }
 This JSON response format includes the client's IP address, hardcoded location (New York), and a greeting message with the visitor's name and temperature.
-
-

@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"strings"
@@ -15,14 +14,7 @@ type Response struct {
 	Greeting string `json:"greeting"`
 }
 
-func main() {
-	http.HandleFunc("/api/hello", helloHandler)
-	port := "8080"
-	log.Printf("Server starting on port %s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
-}
-
-func helloHandler(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
 	visitorName := r.URL.Query().Get("visitor_name")
 	if visitorName == "" {
 		visitorName = "Visitor"
@@ -49,7 +41,6 @@ func getClientIP(r *http.Request) string {
 
 	for _, header := range headersToCheck {
 		if ip := r.Header.Get(header); ip != "" {
-
 			if header == "X-Forwarded-For" {
 				ips := strings.Split(ip, ",")
 				return strings.TrimSpace(ips[0])
