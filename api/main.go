@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"strings"
@@ -13,11 +12,6 @@ type Response struct {
 	ClientIP string `json:"client_ip"`
 	Location string `json:"location"`
 	Greeting string `json:"greeting"`
-}
-
-func main() {
-	http.HandleFunc("/", Handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +25,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	city := "New York"
 	temperature := 11.0
 
-	greeting := fmt.Sprintf("Hello, %s! The temperature is %.1f degrees Celsius in %s", visitorName, temperature, city)
+	greeting := fmt.Sprintf("Hello, %s!, the temperature is %.1f degrees Celsius in %s", visitorName, temperature, city)
 	response := Response{
 		ClientIP: clientIP,
 		Location: city,
@@ -39,11 +33,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(response)
-	if err != nil {
-		http.Error(w, "Failed to encode JSON", http.StatusInternalServerError)
-		return
-	}
+	json.NewEncoder(w).Encode(response)
 }
 
 func getClientIP(r *http.Request) string {
