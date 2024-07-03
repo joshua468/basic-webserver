@@ -9,9 +9,9 @@ import (
 )
 
 type Response struct {
-    ClientIP string `json:"client_ip"`
-    Location string `json:"location"`
-    Greeting string `json:"greeting"`
+    ClientIP  string `json:"client_ip"`
+    Location  string `json:"location"`
+    Greeting  string `json:"greeting"`
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
