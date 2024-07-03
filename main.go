@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/joshua468/basic-webServer/api"
+	"github.com/joshua468/basic-webserver/api"
 )
 
 func main() {
